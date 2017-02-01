@@ -3,6 +3,7 @@
     function windowChange() {
         console.log('smoll', $(window).width())
         if ($(window).width() <= 763) {
+
             $('.nav-collapse').removeClass("in");
             var photos = $('#photos > .indicator > .carousel > .carousel-inner > .item');
             console.log(photos)
@@ -11,6 +12,8 @@
             }
             $('#myGalleryCarousel').addClass('invisible');
         } else {
+            $('#thumbnails').fadeIn();
+            setTimeout(function(){$(window).on('mousemove', mouseMoveHandler);},1000);
             $('.nav-collapse').addClass("in");
             var photos = $('#photos > .indicator > .carousel > .carousel-inner > .item');
             console.log(photos)
@@ -22,22 +25,19 @@
             $('#myGalleryCarousel').removeClass('invisible');
         }
     }
-    $(window).resize(function(){
-      windowChange();
+    $(window).resize(function() {
+        windowChange();
     });
     windowChange();
-    //$('#thumbnailCarousel').carousel({ interval: 2000 });
+
     $('.carousel-showsixmoveone .item').each(function() {
         var itemToClone = $(this);
-
         for (var i = 1; i < 4; i++) {
             itemToClone = itemToClone.next();
-
             // wrap around if at end of item collection
             if (!itemToClone.length) {
                 itemToClone = $(this).siblings(':first');
             }
-
             // grab item, clone, add marker class, add to collection
             itemToClone.children(':first-child').clone().addClass("cloneditem-" + (i)).appendTo($(this));
         }
@@ -45,8 +45,14 @@
 
     $('.sidebar-nav a').bind('click', function(event) {
         var $anchor = $(this);
-
         $('.section').addClass('invisible');
+        if ($(window).width() <= 763) {
+            $('#thumbnails').fadeIn();
+            $('.nav-collapse').removeClass("in");
+        } else {
+          $('#thumbnails').fadeIn();
+          setTimeout(function(){$('#thumbnails').fadeOut();},1000);
+        }
         $($anchor.attr('href')).removeClass('invisible');
         console.log($anchor.attr('href'))
         if ($anchor.attr('href') !== '#landing') {
@@ -56,4 +62,21 @@
         }
     });
     $('body').scrollspy({target: '.navbar-fixed-top', offset: 51});
+
+    var menuTimeout = null;
+    function mouseMoveHandler(e) {
+        if (e.pageY > $(window).height()-150 || $('#thumbnails').is(':hover')) {
+            // Show the menu if mouse is within 20 pixels from the left or we are hovering over it
+            clearTimeout(menuTimeout);
+            menuTimeout = null;
+            $('#thumbnails').fadeIn();
+        } else if (menuTimeout === null) {
+            // Hide the menu if the mouse is further than 20 pixels from the left and it is not hovering over the menu and we aren't already scheduled to hide it
+            menuTimeout = setTimeout(function() {
+                $('#thumbnails').fadeOut();
+            }, 500);
+        }
+      }
+
+
 })(jQuery); // End of use strict
