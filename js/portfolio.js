@@ -1,16 +1,16 @@
 (function($) {
     "use strict";
+    var menuTimeout = null;
     function windowChange() {
-        console.log('smoll', $(window).width())
         if ($(window).width() <= 763) {
-
+          $('#thumbnails .right').addClass("invisible");
+          $('#thumbnails .left').addClass("invisible");
             $('.nav-collapse').removeClass("in");
+            $('#myGalleryCarousel').addClass('invisible');
             var photos = $('#photos > .indicator > .carousel > .carousel-inner > .item');
-            console.log(photos)
             for (var i = 0; i < photos.length; i++) {
                 photos.eq(i).addClass('active');
             }
-            $('#myGalleryCarousel').addClass('invisible');
         } else {
             $('#thumbnails').fadeIn();
             setTimeout(function(){$(window).on('mousemove', mouseMoveHandler);},1000);
@@ -23,8 +23,25 @@
             }
             photos.eq(0).addClass('active');
             $('#myGalleryCarousel').removeClass('invisible');
+            $('#thumbnails .right').removeClass("invisible");
+            $('#thumbnails .left').removeClass("invisible");
         }
     }
+
+    function mouseMoveHandler(e) {
+        if (e.pageY > $(window).height()-150 || $('#thumbnails').is(':hover')) {
+            // Show the menu if mouse is within 20 pixels from the left or we are hovering over it
+            clearTimeout(menuTimeout);
+            menuTimeout = null;
+            $('#thumbnails').fadeIn();
+        } else if (menuTimeout === null && $(window).width() >= 763) {
+            // Hide the menu if the mouse is further than 20 pixels from the left and it is not hovering over the menu and we aren't already scheduled to hide it
+            menuTimeout = setTimeout(function() {
+                $('#thumbnails').fadeOut();
+            }, 500);
+        }
+      }
+
     $(window).resize(function() {
         windowChange();
     });
@@ -44,8 +61,6 @@
     });
 
     $('.sidebar-nav a').bind('click', function(event) {
-      console.log('yo', $('#landing').hasClass('invisible'))
-
         var $anchor = $(this);
         $('.section').addClass('invisible');
         if ($(window).width() <= 763) {
@@ -56,7 +71,6 @@
           setTimeout(function(){$('#thumbnails').fadeOut();},1000);
         }
         $($anchor.attr('href')).removeClass('invisible');
-        console.log($anchor.attr('href'))
         if ($anchor.attr('href') !== '#landing') {
             $('.carousel-text').addClass('invisible');
         } else {
@@ -69,27 +83,11 @@
           $('.sidebar-brand').addClass('invisible');
         }
     });
-    $('body').scrollspy({target: '.navbar-fixed-top', offset: 51});
 
-    var menuTimeout = null;
-    function mouseMoveHandler(e) {
-        if (e.pageY > $(window).height()-150 || $('#thumbnails').is(':hover')) {
-            // Show the menu if mouse is within 20 pixels from the left or we are hovering over it
-            clearTimeout(menuTimeout);
-            menuTimeout = null;
-            $('#thumbnails').fadeIn();
-        } else if (menuTimeout === null) {
-            // Hide the menu if the mouse is further than 20 pixels from the left and it is not hovering over the menu and we aren't already scheduled to hide it
-            menuTimeout = setTimeout(function() {
-                $('#thumbnails').fadeOut();
-            }, 500);
-        }
-      }
     if($('#landing').hasClass('invisible')) {
-      console.log('yo')
       $('.sidebar-brand').removeClass('invisible');
     } else {
       $('.sidebar-brand').addClass('invisible');
     }
-
+  $('body').scrollspy({target: '.navbar-fixed-top', offset: 51});
 })(jQuery); // End of use strict

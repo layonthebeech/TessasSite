@@ -1,16 +1,13 @@
-html
-  overflow: none
-  height: 100%
-
 body
-  height: 100%
   font-family: "Oswald"
-
   background-color:#000
 
 #wrapper
   height: 100%
+  max-width: 100%
   padding-left: 0
+  margin: 0 auto
+  overflow: hidden
   -webkit-transition: all 0.5s ease
   -moz-transition: all 0.5s ease
   -o-transition: all 0.5s ease
@@ -34,9 +31,6 @@ body
 
 .navbar-toggle
   color:white
-
-.fa-angle-right
-  color:#fff
 
 .nav-collapse .collapsing
   position:static
@@ -197,10 +191,11 @@ body
 
   .carousel-text
     position: absolute
-
+  .carousel-control.left
+    transform: translate(200px,0)
   .sidebar-nav
     position: absolute
-    top: 0
+    top: 20px
     width: 250px
     margin: 0
     padding: 0
@@ -242,30 +237,19 @@ body
     width: 100%
   .navbar-toggle
     width: 50px
-    height: 200px
+    clear: both
+    float: none
+
 
   #menu
     width: 100%
     height: auto
+    content: " "
+    display: block
+    clear: both
     background-color: rgba(255, 0, 0, 0)
     position: relative
     z-index: 2000
-
-  #wrapper
-    position: relative
-
-  #myGalleryCarousel
-    width: 100%
-    height: 500px
-
-  #myGalleryCarousel .carousel-inner
-    width: 100%
-    margin-left: -350px
-    height: 100%
-
-  #myGalleryCarousel img
-    height: 400px
-    min-width: 600px
 
   #myCarousel .carousel-inner
     width: 100%
@@ -323,18 +307,6 @@ body
   #photos .indicator .carousel .right
     display: none
 
-.carousel, .item, .active, .carousel-inner
-  height: 100%
-
-#wrapper
-  max-width: 100%
-  margin: 0 auto
-
-  overflow:hidden
-
-footer
-  margin: 50px 0
-
 .carousel-text
   bottom: 20px
   z-index: 1000
@@ -350,6 +322,7 @@ footer
 
 h1
   font-size: 5em
+  color: #fff
 
 .top-buffer
   margin-top: 60px
