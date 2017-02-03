@@ -11,6 +11,7 @@
     <title>Tessa Dettman - Actor</title>
 
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Oswald:Light">
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Oswald">
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Fjalla+One">
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Oxygen">
@@ -22,6 +23,7 @@
     <link href="css/photo_carousel.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css">
 
+
 </head>
 
 <body>
@@ -29,7 +31,7 @@
     <div id="whole" class="container">
         <div class="row">
             <div id="menu">
-                <div class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+                <div class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse" href=".nav-collapse">
                     <i class="fa fa-bars fa-3x" aria-hidden="true"></i>
                 </div>
                 <div class="nav-collapse collapse in">
@@ -99,12 +101,13 @@
                       </div>
                     </div>
                     <div class="row">
-                      <img class="img-responsive col-md-8" src="img/aboutme.jpg"></img>
                       <div class="col-md-4">
                         <p>Tessa Dettman is a Chicago-based actor and recent Northwestern grad.
                         She studied Theatre with certificates in Musical Theatre and Integrated Marketing Communications.
-                        She enjoys long walks on the beach, puppies, and french fries.</p>
+                      </p>
+                        <p>She enjoys long walks on the beach, puppies, and french fries.</p>
                       </div>
+                      <img class="img-responsive col-md-6" src="img/aboutme.jpg"></img>
                     </div>
                   </div>
                 </div>
@@ -313,5 +316,9 @@
 <script src="js/portfolio.js"></script>
 <script src="js/jqBootstrapValidation.js"></script>
 <script src="js/contact_me.js"></script>
-
+<script>
+$('.navbar-toggle').on('click', function () {
+    $($(this).data('target')).collapse('toggle');
+});
+</script>
 </html>
