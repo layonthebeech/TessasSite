@@ -20,10 +20,10 @@
     var menuTimeout = null;
     function windowChange() {
         if ($(window).width() <= 745) {
-          $('#thumbnails .right').addClass("invisible");
-          $('#thumbnails .left').addClass("invisible");
+          // $('#thumbnails .right').addClass("invisible");
+          // $('#thumbnails .left').addClass("invisible");
             $('.nav-collapse').removeClass("in");
-            $('#myGalleryCarousel').addClass('invisible');
+            $('#thumbnails').addClass('invisible');
             var photos = $('#photos > .indicator > .carousel > .carousel-inner > .item');
             for (var i = 0; i < photos.length; i++) {
                 photos.eq(i).addClass('active');
@@ -37,9 +37,9 @@
                 photos.eq(i).removeClass('active');
             }
             photos.eq(0).addClass('active');
-            $('#myGalleryCarousel').removeClass('invisible');
-            $('#thumbnails .right').removeClass("invisible");
-            $('#thumbnails .left').removeClass("invisible");
+            // $('#myGalleryCarousel').removeClass('invisible');
+            $('#thumbnails').removeClass("invisible");
+            // $('#thumbnails .left').removeClass("invisible");
         }
     }
 

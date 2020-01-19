@@ -1,7 +1,7 @@
 body
   font-family: "Oswald"
-  color: #fff
-  background-color: #000
+  color: #545454
+  background-color: #D7D2D6
 
 p
   font-size: 1.5em
@@ -17,9 +17,12 @@ p
   -moz-transition: all 0.5s ease
   -o-transition: all 0.5s ease
   transition: all 0.5s ease
+  position: relative
+
+
 
 #menu
-  background:#000
+  background:#D7D2D6
   z-index: 1000
   position: fixed
 
@@ -29,8 +32,8 @@ p
   .margin-top
     margin-top: 50px
 #aboutme
-    float: right
-    max-width: 500px
+  // max-width: 500px
+  margin-top: 50px
 #about
   a
     color: #a959ff
@@ -53,35 +56,33 @@ p
 
 #myGalleryCarousel .carousel-inner
   overflow: initial
-  position: relative
-  left: 50%
-  margin-left: -750px
-  width: 1600px
 
 #myGalleryCarousel img
   display:block
   margin: 2px auto
   max-width: 100%
-  height: 100vh
-
-.resume
-  min-width: 400px
-  width: 80%
-  float: none
-  margin: 0 auto
 
 #myCarousel .carousel-inner
-  width: 1600px
+  // width: 1600px
   position: relative
-  left: 50%
-  margin-left: -750px
+  // left: 50%
+  // margin-left: -750px
   overflow: initial
 
 #myCarousel img
   display:block
   margin: 2px auto
   max-width: 100%
-  height: 100vh
+  // height: 100vh
+  width: 100%
+  position: absolute
+
+#myCarousel
+  .carousel-control
+    background-image: none
+  .icon-next, .icon-prev
+    font-size: 80px;
+    color: #545454
 
 #thumbnails img
   width: 100%
@@ -93,9 +94,16 @@ p
 
 #photos .indicator
   position: absolute
+  left: 50%
+  transform: translate(-50%, -200px)
+  width: 100%
 
-#thumbnails
-  width: 70%
+#photos
+  position: relative
+
+.carousel-control
+  background-image: none
+
 .carousel-showsixmoveone
   .carousel-control
     width: 4%
@@ -176,24 +184,41 @@ p
   background-color: #fff
   border: none
 
+
+
 @media screen and (min-width: 768px)
   .resume
     width: 70%
   .sidebyside
-    width: 50%
-    transform: translate(300px, 0)
-  #thumbnails
-    width: 70%
+    // width: 50%
+    // transform: translate(300px, 0)
+
 @media screen and (min-width: 992px)
   .resume
     width: 60%
-  .sidebyside
-    width: 70%
-    transform: translate(300px, 0)
-  #thumbnails
-    width: 80%
+  // .sidebyside
+    // width: 70%
+    // transform: translate(300px, 0)
 
 @media screen and (min-width: 764px)
+  .sidebyside
+    // width: calc(100% - 250px)
+    padding-left: 250px
+  #landing
+    width: 100%
+
+  #myGalleryCarousel img
+    height: 100vh
+
+  #myCarousel
+    img
+      max-width: 460px
+      min-height: 100vh
+      position: static
+
+  #photos
+    margin-left: 250px
+
   #thumbnails
     transform: translate(250px, -200px)
   .navbar-toggle
@@ -205,6 +230,12 @@ p
 
   .carousel-text
     position: absolute
+  
+  .resume
+    min-width: 400px
+    width: 80%
+    float: none
+    margin: 0 auto
 
   .sidebar-nav
     position: absolute
@@ -222,7 +253,7 @@ p
       a
         display: block
         text-decoration: none
-        color: #999999
+        color: #545454
 
         &:hover
           text-decoration: none
@@ -238,7 +269,7 @@ p
       line-height: 60px
 
       a
-        color: #999999
+        color: #545454
 
         &:hover
           color: #fff
@@ -263,16 +294,20 @@ p
     position: relative
     z-index: 2000
 
-  #myCarousel .carousel-inner
-    width: 100%
-    margin-left: -350px
-    height: 100%
+  #myCarousel 
 
-  #myCarousel img
-    height: 400px
-    min-width: 600px
+  #myCarousel 
+    .item
+      min-height: 70vh
+      overflow: hidden
+    img
+      position: absolute
+    .carousel-inner
+      width: 100%
+      margin-left: 0px
+      height: 100%
 
-  /* Sidebar Styles
+  
   .sidebar-nav
     top: 50px
     margin: 0
@@ -288,7 +323,7 @@ p
       a
         display: block
         text-decoration: none
-        color: #999999
+        color: #545454
 
         &:hover
           text-decoration: none
@@ -304,7 +339,7 @@ p
       line-height: 60px
 
       a
-        color: #999999
+        color: #545454
 
         &:hover
           color: #fff
@@ -323,7 +358,7 @@ p
   bottom: 20px
   z-index: 1000
   width: 30%
-  padding-left: 0
+  padding-left: 15px
   margin-bottom: 15px
   text-align: center
   list-style: none
@@ -334,7 +369,13 @@ p
 
 h1
   font-size: 5em
-  color: #fff
+  color: #545454
+
+h2 
+  color: #6e6e6e
 
 .top-buffer
   margin-top: 60px
+
+.thumbnail
+  margin: 0px
